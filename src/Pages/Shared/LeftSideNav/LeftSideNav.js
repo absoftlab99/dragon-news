@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
 const LeftSideNav = () => {
@@ -12,14 +13,14 @@ const LeftSideNav = () => {
 
     return (
         <div>
-            <h5>All Categories: {categories.length}</h5>
+            <h5 className='d-none d-md-block'>All Categories</h5>
+            <h5 className='d-sm-block d-md-none text-light'>All Categories</h5>
                 {
-                    categories.map(category => <p className='text-start'
-                    key={category.id}
-                    category={category}
-                    >
-                    <Link to={`/categories/${category.id}`}>{category.name}</Link>
-                    </p>)
+                    categories.map(category =>
+                        <ListGroup variant="flush" className='w-100 border-bottom d-none d-md-block' key={category.id}>
+                            <ListGroup.Item as={Link} to={`/category/${category.id}`}>{category.name}</ListGroup.Item>
+                        </ListGroup>
+                    )
                 }
         </div>
     );

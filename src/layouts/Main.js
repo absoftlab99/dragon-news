@@ -10,7 +10,7 @@ const Main = () => {
     return (
         <div>
             <Header></Header>
-            <Container>
+            <Container className='mt-md-5 pt-5'>
                 <Row>
                     <Col lg="2">
                         <LeftSideNav></LeftSideNav>
