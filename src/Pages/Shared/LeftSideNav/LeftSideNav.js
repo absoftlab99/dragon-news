@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/UserContext';
 
 const LeftSideNav = () => {
-    const [categories, setCategories] = useState([]);
-
-    useEffect(()=>{
-        fetch('http://localhost:5000/news-categories')
-        .then(res => res.json())
-        .then (data => setCategories(data));
-    },[])
-
+    const {categories, setCatName} = useContext(AuthContext);
+    const getCategoryHandler = (name) =>{
+        setCatName(name)
+        console.log(name);
+    }
     return (
         <div>
             <h5 className='d-none d-md-block'>All Categories</h5>
@@ -18,7 +16,7 @@ const LeftSideNav = () => {
                 {
                     categories.map(category =>
                         <ListGroup variant="flush" className='w-100 border-bottom d-none d-md-block' key={category.id}>
-                            <ListGroup.Item as={Link} to={`/category/${category.id}`}>{category.name}</ListGroup.Item>
+                            <ListGroup.Item as={Link} to={`/category/${category.id}`} onClick={()=>getCategoryHandler(category.name)}>{category.name}</ListGroup.Item>
                         </ListGroup>
                     )
                 }

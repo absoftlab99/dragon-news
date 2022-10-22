@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/UserContext';
 
 const Category = () => {
+    const {catName} = useContext(AuthContext);
+    console.log(catName);
     return (
         <div>
-            <h1>this is category page</h1>
+            <h3>Category Name: {catName}</h3>
         </div>
     );
 };
