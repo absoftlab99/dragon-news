@@ -1,0 +1,8 @@
+.profile img{
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+.published_date{
+    font-size: 12px;
+}

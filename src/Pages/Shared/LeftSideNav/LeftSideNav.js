@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/UserContext';
+import './LeftSideNav.css';
 
 const LeftSideNav = () => {
     const {categories, setCatName} = useContext(AuthContext);
@@ -10,7 +11,7 @@ const LeftSideNav = () => {
         console.log(name);
     }
     return (
-        <div>
+        <div className='leftSideNav'>
             <h5 className='d-none d-md-block'>All Categories</h5>
             <h5 className='d-sm-block d-md-none text-light'>All Categories</h5>
                 {
