@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { FaArrowAltCircleLeft, FaEye, FaRegBookmark, FaShareAlt } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
-import NewsCard from '../Shared/NewsCard/NewsCard';
+import './News.css';
 
 const News = () => {
     const news = useLoaderData();
@@ -28,11 +28,11 @@ const News = () => {
                 <Card.Body>
                     <Card.Title className='text-start'>{title}</Card.Title>
                         <img className='img-fluid' src={image_url} alt={title} />
-                    <Card.Text>
+                    <div>
                     {
-                        <p className='text-start pt-2'>{details}</p>
+                        <p className='text-start pt-2 news-details'>{details}</p>
                     }
-                    </Card.Text>
+                    </div>
                 </Card.Body>
                 <Card.Footer className="text-muted text-start d-inline d-flex">
                     <div className=''>
