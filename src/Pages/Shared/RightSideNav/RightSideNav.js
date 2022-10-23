@@ -1,15 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ButtonGroup, Button, Card } from 'react-bootstrap';
 import { FaGoogle, FaGithub, FaFacebook, FaYoutube, FaTwitter, FaWhatsapp, FaDiscord, FaEye, FaTerminal } from 'react-icons/fa';
 import Carousel from 'react-bootstrap/Carousel';
 import './RightSideNav.css';
+import { AuthContext } from '../../../contexts/UserContext';
+import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
 
 const RightSideNav = () => {
+    const {popUpSignIn, popUpGit} = useContext(AuthContext);
+    const provider = new GoogleAuthProvider();
+    const gitProvider = new GithubAuthProvider();
+
+    const popUpHandler = (event) =>{
+        event.preventDefault();
+
+        popUpSignIn(provider)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error =>{
+            console.error(error);
+        })
+    }
+    const gitPopUpHandler = (event) =>{
+        event.preventDefault();
+        popUpGit(gitProvider)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error =>{
+            console.error(error);
+        })
+    }
     return (
         <div className=''>
             <ButtonGroup vertical className='w-100'>
-                <Button variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
-                <Button variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
+                <Button onClick={popUpHandler} variant="outline-danger" className='mb-2'><FaGoogle></FaGoogle> Login With Google</Button>
+                <Button onClick={gitPopUpHandler} variant="outline-dark"><FaGithub></FaGithub> Login With Github</Button>
             </ButtonGroup>
             <div className='mt-3'>
                 <h4>Find us On</h4>

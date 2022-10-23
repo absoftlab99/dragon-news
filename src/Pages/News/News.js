@@ -1,12 +1,12 @@
 import React from 'react';
-import { Row, Col, Card, Badge } from 'react-bootstrap';
-import { FaEye, FaRegBookmark, FaShareAlt } from 'react-icons/fa';
-import { useLoaderData } from 'react-router-dom';
+import { Row, Col, Card, Badge, Button } from 'react-bootstrap';
+import { FaArrowAltCircleLeft, FaEye, FaRegBookmark, FaShareAlt } from 'react-icons/fa';
+import { Link, useLoaderData } from 'react-router-dom';
 import NewsCard from '../Shared/NewsCard/NewsCard';
 
 const News = () => {
     const news = useLoaderData();
-    const {title, author, image_url, details, rating} = news;
+    const {title, author, image_url, details, rating, category_id} = news;
     return (
         <Row>
             <Col>
@@ -34,8 +34,13 @@ const News = () => {
                     }
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer className="text-muted text-start d-inline">
-                    <b>Ratings:</b> {rating.number} <Badge bg='warning' text='dark'>{rating.badge}</Badge> | <b>Total View:</b> <FaEye></FaEye> {news.total_view}
+                <Card.Footer className="text-muted text-start d-inline d-flex">
+                    <div className=''>
+                        <b>Ratings:</b> {rating.number} <Badge bg='warning' text='dark'>{rating.badge}</Badge> | <b>Total View:</b> <FaEye></FaEye> {news.total_view}
+                    </div>
+                    <div className="ms-auto">
+                        <Link to={`/category/${category_id}`}><Button> <FaArrowAltCircleLeft></FaArrowAltCircleLeft> Back</Button></Link>
+                    </div>
                 </Card.Footer>
             </Card>
             </Col>
