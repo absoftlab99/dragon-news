@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import News from "../Pages/News/News";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -14,22 +15,22 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>,
+                element: <PrivateRoute><Home></Home></PrivateRoute>,
                 loader: () => fetch('http://localhost:5000/news')
             },
             {
                 path: '/home',
-                element: <Home></Home>,
+                element: <PrivateRoute><Home></Home></PrivateRoute>,
                 loader: () => fetch('http://localhost:5000/news')
             },
             {
                 path: '/news/:id',
-                element: <News></News>,
+                element: <PrivateRoute><News></News></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
             },
             {
                 path: '/category/:id',
-                element: <Category></Category>,
+                element: <PrivateRoute><Category></Category></PrivateRoute>,
                 loader: ({params}) => fetch(`https://dragon-news-server-seven.vercel.app/category/${params.id}`)
             },
             {

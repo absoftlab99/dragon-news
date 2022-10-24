@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ButtonGroup, Button, Card } from 'react-bootstrap';
+import { ButtonGroup, Button } from 'react-bootstrap';
 import { FaGoogle, FaGithub, FaFacebook, FaYoutube, FaTwitter, FaWhatsapp, FaDiscord, FaEye, FaTerminal } from 'react-icons/fa';
 import Carousel from 'react-bootstrap/Carousel';
 import './RightSideNav.css';

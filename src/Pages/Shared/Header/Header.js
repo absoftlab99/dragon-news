@@ -20,7 +20,6 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />  
             <Navbar.Collapse id="basic-navbar-nav">  
                 <Nav className="ms-auto menu">
-                    <Nav.Link className='text-light' as={Link} to='/home'>Home</Nav.Link>
                     {
                         user?.uid ? <Button onClick={signOutHandler} className='' variant='danger'>Log Out</Button> :
                         <>

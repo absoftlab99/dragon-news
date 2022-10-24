@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.config';
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
 
 export const AuthContext = createContext();
@@ -11,8 +11,17 @@ const UserContext = ({children}) => {
     const [categories, setCategories] = useState([]);
     const [catName, setCatName] = useState('All News');
     const [user, setUser] = useState(null);
+
     const popUpSignIn = (provider) =>{
         return signInWithPopup(auth, provider);
+    }
+
+    const signInWithPassword = (email, password) =>{
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    const createUser = (email, password)=>{
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const popUpGit = (gitProvider) => {
@@ -21,6 +30,13 @@ const UserContext = ({children}) => {
 
     const logOut = () =>{
         return signOut(auth)
+    }
+
+    const updtaeData = (name, photo) =>{
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photo
+        });
     }
 
     useEffect(()=>{
@@ -39,7 +55,7 @@ const UserContext = ({children}) => {
     },[])
 
 
-    const authInfo = {categories, setCatName, catName, popUpSignIn, popUpGit, user, logOut}
+    const authInfo = {createUser, categories, setCatName, catName, popUpSignIn, popUpGit, user, logOut, signInWithPassword, updtaeData}
 
     return (
         <div>
